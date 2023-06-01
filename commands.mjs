@@ -1,14 +1,17 @@
+import { Interaction, InteractionData } from "./map/interaction.mjs"
+import { InteractionResponse, InteractionResponseData } from "./callback/callback.mjs"
+
 export default {
-    ping: async (body) => ({
-        statusCode: 200,
-        type: 4,
-        data: { content: "Pong!" },
-    }),
-    user: async (body) => ({
-        statusCode: 200,
-        type: 4,
-        data: { content: "Your name is " + body.member.user.username },
-    }),
+    /**@param {Interaction} interaction */
+    ping: async (interaction) => {
+        let data = new InteractionResponseData("Pong!");
+        return new InteractionResponse(200, 4, data);
+    },
+    /**@param {Interaction} interaction */
+    user: async (interaction) => {
+        let data = new InteractionResponseData("Your name is " + interaction.member.user.username);
+        return new InteractionResponse(200, 4, data);
+    },
     register: [
         {
             name: "ping",

@@ -1,5 +1,7 @@
 import nacl from "tweetnacl";
 import commands from "./commands.mjs";
+import { Interaction } from "./map/interaction.mjs";
+import { InteractionResponse } from "./callback/callback.mjs";
 
 export const handler = async(event) => {
     const PUBLIC_KEY = process.env.PUBLIC_KEY;
@@ -24,18 +26,21 @@ export const handler = async(event) => {
 
     // replying to ping
     const body = JSON.parse(strbody);
-    if (body.type === 1) {
-        return {
-            "statusCode": 200,
-            "body": JSON.stringify({
-                type: 1,
-            }),
-        };
+    const interaction = new Interaction(body);
+    
+    if (interaction.type === 1) {
+        return JSON.stringify(new InteractionResponse(1, null))
+        // return {
+        //     "statusCode": 200,
+        //     "body": JSON.stringify({
+        //         type: 1,
+        //     }),
+        // };
     }
-
-    // Handle /ping command
-    if (body.data.name in commands) {
-        return JSON.stringify(await commands[body.data.name](body));
+    
+    // Handle slash command
+    if (interaction.data.name in commands) {
+        return JSON.stringify(await commands[interaction.data.name](interaction));
     }
 
     return {
