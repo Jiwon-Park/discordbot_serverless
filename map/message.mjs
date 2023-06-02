@@ -4,6 +4,7 @@ import { Attachment } from "./attachment.mjs";
 
 export class Message {
     constructor(json) {
+        if(json == null) return null;
         this.id = json.id;
         this.channel_id = json.channel_id;
         this.author = json.author;
@@ -15,7 +16,9 @@ export class Message {
         this.mentions = json.mentions;
         this.mention_roles = json.mention_roles;
         this.mention_channels = json.mention_channels;
-        this.attachments = new Attachment(json.attachments);
+        if (json.attachments != null)
+            /** @type {Attachment} */
+            this.attachments = new Attachment(json.attachments);
         this.embeds = json.embeds;
         this.reactions = json.reactions;
         this.nonce = json.nonce;

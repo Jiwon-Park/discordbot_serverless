@@ -29,17 +29,21 @@ export class Interaction {
             this.data = new InteractionData(json.data);
         }
         this.guild_id = json.guild_id;
-        /**@type {Channel} */
-        this.channel = new Channel(json.channel);
+        if (json.channel != null)
+            /**@type {Channel} */
+            this.channel = new Channel(json.channel);
         this.channel_id = json.channel_id;
-        /**@type {GuildMember} */
-        this.member = new GuildMember(json.member);
-        /**@type {User} */
-        this.user = new User(json.user);
+        if (json.member != null)
+            /**@type {GuildMember} */
+            this.member = new GuildMember(json.member);
+        if (json.user != null)
+            /**@type {User} */
+            this.user = new User(json.user);
         this.token = json.token;
         this.version = json.version;
-        /**@type {Message} */
-        this.message = new Message(json.message);
+        if (json.message != null)
+            /**@type {Message} */
+            this.message = new Message(json.message);
         this.app_permissions = json.app_permissions;
         this.locale = json.locale;
         this.guild_locale = json.guild_locale;

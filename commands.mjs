@@ -5,12 +5,12 @@ export default {
     /**@param {Interaction} interaction */
     ping: async (interaction) => {
         let data = new InteractionResponseData("Pong!");
-        return new InteractionResponse(200, 4, data);
+        return new InteractionResponse(4, data);
     },
     /**@param {Interaction} interaction */
     user: async (interaction) => {
         let data = new InteractionResponseData("Your name is " + interaction.member.user.username);
-        return new InteractionResponse(200, 4, data);
+        return new InteractionResponse(4, data);
     },
     register: [
         {

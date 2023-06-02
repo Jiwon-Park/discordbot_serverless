@@ -1,32 +1,33 @@
 //https://discord.com/developers/docs/resources/user#user-object
 
 export class User {
-    constructor(body) {
+    constructor(json) {
+        if(json == null) return null;
         /**@type {string} */
-        this.id = body.id;
+        this.id = json.id;
         /**@type {string} */
-        this.username = body.username;
+        this.username = json.username;
         /**@type {string} */
-        this.discriminator = body.discriminator;
+        this.discriminator = json.discriminator;
         /**@type {?string} */
-        this.avatar = body.avatar;
+        this.avatar = json.avatar;
         /**@type {boolean} */
-        this.bot = body.bot;
+        this.bot = json.bot;
         /**@type {boolean} */
-        this.system = body.system;
+        this.system = json.system;
         /**@type {boolean} */
-        this.mfa_enabled = body.mfa_enabled;
+        this.mfa_enabled = json.mfa_enabled;
         /**@type {?string} */
-        this.banner = body.banner;
-        this.accent_color = body.accent_color;
+        this.banner = json.banner;
+        this.accent_color = json.accent_color;
         /**@type {string} */
-        this.locale = body.locale;
+        this.locale = json.locale;
         /**@type {boolean} */
-        this.verified = body.verified;
+        this.verified = json.verified;
         /**@type {?string} */
-        this.email = body.email;
-        this.flags = body.flags;
-        this.premium_type = body.premium_type;
-        this.public_flags = body.public_flags;
+        this.email = json.email;
+        this.flags = json.flags;
+        this.premium_type = json.premium_type;
+        this.public_flags = json.public_flags;
     }
 }

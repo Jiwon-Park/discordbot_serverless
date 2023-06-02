@@ -40,7 +40,9 @@ export const handler = async(event) => {
     
     // Handle slash command
     if (interaction.data.name in commands) {
-        return JSON.stringify(await commands[interaction.data.name](interaction));
+        let response = JSON.stringify(await commands[interaction.data.name](interaction));
+        // console.log("RESPONSE\n" + response);
+        return response;
     }
 
     return {
